@@ -7,6 +7,7 @@ const loadCategories = async () => {
     } catch (error) {
         console.log(error)
     }
+
 }
 
 //Display categories items
@@ -14,7 +15,6 @@ const loadCategories = async () => {
 const displayCategories = catagories => {
     const catagorySection = document.getElementById('category-section');
     catagories.forEach(element => {
-        console.log(element);
         const list = document.createElement('ul');
         list.classList.add('nav')
         list.classList.add('nav-pills')
@@ -58,8 +58,12 @@ const loadNews = async (id) => {
 //  Displaynews
 
 const displayNews = (datas) => {
-    const newsItems = document.getElementById('news-items');
+    console.log(datas);
 
+    const sortData = datas.sort()
+    console.log(sortData);
+
+    const newsItems = document.getElementById('news-items');
     newsItems.innerText = `${datas.length > 0 ? datas.length + ' news items found' : 'No news today'}`;
     const newsSection = document.getElementById('news-section');
     newsSection.innerHTML = '';
@@ -83,7 +87,7 @@ const displayNews = (datas) => {
                                     </div>
                                     <div class="pl-1 mt-2">
                                         <span class="fw-bold">${data.author.name}</span>
-                                        <p class="text-muted" style="font-size:10px">${data.author.published_date}</p>
+                                        <p class="text-muted" style="font-size:10px">${data.author.published_date.slice(0, 10)}</p>
                                     </div>
                                 </div>
 
