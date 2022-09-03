@@ -28,10 +28,21 @@ const displayCategories = catagories => {
     })
 }
 
+// Loading Spinner
+
+const loading = (isLoading) => {
+    const spinner = document.getElementById('spinner-loader')
+    if (isLoading) {
+        spinner.classList.remove('d-none');
+    } else {
+        spinner.classList.add('d-none');
+    }
+}
 
 // Load News section
 
 const loadNews = async (id) => {
+    loading(true)
     try {
 
         const url = `https://openapi.programming-hero.com/api/news/category/${id}`;
@@ -100,6 +111,7 @@ const displayNews = datas => {
         `
         newsSection.appendChild(div);
     })
+    loading(false)
 }
 
 
