@@ -29,7 +29,7 @@ const displayCategories = catagories => {
 }
 
 
-// displayNews section
+// Load News section
 
 const loadNews = async (id) => {
     try {
@@ -44,6 +44,7 @@ const loadNews = async (id) => {
     }
 }
 
+//  Displaynews
 
 const displayNews = datas => {
     console.log(datas);
@@ -77,7 +78,7 @@ const displayNews = datas => {
 
                                 <!-- views -->
                                 <div>
-                                    <span><i class="fa-solid fa-eye"></i> 1.4 M</span>
+                                    <span><i class="fa-solid fa-eye"></i> ${data.total_view} M</span>
                                 </div>
                                 <!-- Icons -->
                                 <div>
@@ -89,7 +90,7 @@ const displayNews = datas => {
                                 </div>
                                 <!-- button -->
                                 <div class="">
-                                    <button class="btn btn-primary">Watch</button>
+                                    <button class="btn btn-primary" onclick="detailNews('${data._id}')" data-bs-toggle="modal" data-bs-target="#detailNewsModal">Details</button>
                                 </div>
                             </div>
                         </div>
@@ -102,7 +103,35 @@ const displayNews = datas => {
 }
 
 
+// showing news details
 
+const detailNews = async (newsId) => {
+    console.log(newsId)
+    try {
+        const url = `https://openapi.programming-hero.com/api/news/2e78e5e0310c2e9adbb6efb1a263e745`;
+        const res = await fetch(url)
+        const datas = await res.json();
+        displayDetails(datas.data)
+    } catch (error) {
+        console.log(error);
+    }
+}
 
+const displayDetails = (datas) => {
+    console.log(datas)
+    const detailNewsModalLabel = document.getElementById('detailNewsModalLabel');
+    detailNewsModalLabel.innerText = `${datas[0].title}`;
+
+    const modalDetails = document.getElementById('modal-details');
+    modalDetails.innerHTML = `
+    <div class="fw-bold">
+        <img class="img-thumbnail" src="${datas[0].author.img}">
+        <p>Author: ${datas[0].author.name ? datas[0].author.name : 'No Name'}</p>
+        <p>Rating: ${datas[0].rating.number ? datas[0].rating.number : 'No Rating'}</p>
+        <p>Rating: ${datas[0].total_view ? datas[0].total_view : 'No Info'}</p>
+        <p>Badge: ${datas[0].rating.badge ? datas[0].rating.badge : 'No Badge'}</p>
+    </div>
+    `
+}
 
 loadCategories()
