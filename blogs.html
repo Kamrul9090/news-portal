@@ -11,15 +11,15 @@
 </head>
 
 <body>
-    <h1>this is blogs</h1>
+    <header class="text-center my-5">
+        <h1>All blogs</h1>
+    </header>
     <section>
         <div class="container overflow-hidden ">
             <div class="row gy-5">
                 <div class="col-6">
-                    <div class="p-3 border bg-light">
-                        <header>
-                            <h5>What is deference between var, let and const?</h5>
-                        </header>
+                    <div class="p-3 border bg-light" style="height:350px">
+                        <h5>What is the difference between var, let, and const?</h5>
                         <div>
                             <p>
                                 In JavaScript, users can declare a variable using 3 keywords that are var, let, and
@@ -41,13 +41,49 @@
                     </div>
                 </div>
                 <div class="col-6">
-                    <div class="p-3 border bg-light">Custom column padding</div>
+                    <div class="p-3 border bg-light" style="height:350px">
+                        <h5>What is the difference between an arrow and a regular function?</h5>
+                        <div>
+                            <p>
+                                Arrow functions do not have an arguments binding. However, they have access to the
+                                arguments object of the closest non-arrow parent function. Named and rest parameters are
+                                heavily relied upon to capture the arguments passed to arrow functions.
+                            </p>
+                            <p>
+                                Unlike regular functions, arrow functions do not have their own this. The value of this
+                                inside an arrow function remains the same throughout the lifecycle of the function and
+                                is always bound to the value of this in the closest non-arrow parent function.
+                            </p>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-6">
-                    <div class="p-3 border bg-light">Custom column padding</div>
+                    <div class="p-3 border bg-light" style="height:350px">
+                        <h6>What is the difference between map, forEach, filter, and find?</h6>
+                        <p>
+                            The main difference between this two methods is that forEach allows you to change elements
+                            of original array and returns undefined and map does not allow you to change original array
+                            and intended for making new array based on original one.
+                        </p>
+                        <p>
+                            The filter() method is used to filters all the elements and returns the element that matches
+                            and the element that do not match are removed. The only difference is the filter() method
+                            search through all the elements while find() method search through all the child elements
+                            only
+                        </p>
+                    </div>
                 </div>
                 <div class="col-6">
-                    <div class="p-3 border bg-light">Custom column padding</div>
+                    <div class="p-3 border bg-light" style="height:350px">
+                        <h6>
+                            Why use template string?
+                        </h6>
+                        <p>
+                            You can use template strings to write your string exactly how you want it to appear, without
+                            all the quotation marks and confusion. Template strings make it very easy to spot a missing
+                            space and make your string more readable.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
