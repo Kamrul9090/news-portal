@@ -60,18 +60,16 @@ const loadNews = async (id) => {
 const displayNews = (datas) => {
     const newsItems = document.getElementById('news-items');
 
-    console.log(datas)
-    newsItems.innerText = `${datas.length} news items found`;
-    console.log(datas.length)
+    newsItems.innerText = `${datas.length > 0 ? datas.length + ' news items found' : 'No news today'}`;
     const newsSection = document.getElementById('news-section');
     newsSection.innerHTML = '';
     datas.forEach(data => {
         const div = document.createElement('div');
         div.innerHTML = `
         <div class="row p-2 border">
-                    <div class="col align-self-start">
-                        <div><img class="img-thumbnail" src="${data.image_url}" alt="Movie"></div>
-                    </div>
+                <div class="col-12 col-md-12 col-lg-6 align-self-start">
+                    <div><img class="img-thumbnail" src="${data.image_url}" alt="Movie"></div>
+                </div>
                     <div class="col align-self-start">
                         <div class="card-body">
                             <h4 class="card-title">${data.title}</h4>
@@ -79,22 +77,22 @@ const displayNews = (datas) => {
 
                             <div class="d-flex justify-content-between align-items-center">
                                 <!-- author -->
-                                <div class="d-flex">
+                                <div class="d-flex align-items-center">
                                     <div>
-                                        <img class="rounded-circle" style="width:50px" src="${data.author.img}" />
+                                        <img class="rounded-circle" style="width:30px" src="${data.author.img}" />
                                     </div>
-                                    <div class="">
+                                    <div class="pl-1 mt-2">
                                         <span class="fw-bold">${data.author.name}</span>
-                                        <p class="text-muted">${data.author.published_date}</p>
+                                        <p class="text-muted" style="font-size:10px">${data.author.published_date}</p>
                                     </div>
                                 </div>
 
                                 <!-- views -->
-                                <div>
-                                    <span><i class="fa-solid fa-eye"></i> ${data.total_view} M</span>
+                                <div style="font-size:13px">
+                                    <span class="fw-bold"><i class="fa-solid fa-eye"></i> ${data.total_view} M</span>
                                 </div>
                                 <!-- Icons -->
-                                <div>
+                                <div style="font-size:13px">
                                     <i class="fa-solid fa-star text-orange-400"></i>
                                     <i class="fa-solid fa-star text-orange-400"></i>
                                     <i class="fa-solid fa-star text-orange-400"></i>
