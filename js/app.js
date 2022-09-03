@@ -14,6 +14,7 @@ const loadCategories = async () => {
 const displayCategories = catagories => {
     const catagorySection = document.getElementById('category-section');
     catagories.forEach(element => {
+        console.log(element);
         const list = document.createElement('ul');
         list.classList.add('nav')
         list.classList.add('nav-pills')
@@ -49,7 +50,6 @@ const loadNews = async (id) => {
         const res = await fetch(url);
         const datas = await res.json();
         displayNews(datas.data);
-
     } catch (error) {
         console.log(error)
     }
@@ -57,13 +57,15 @@ const loadNews = async (id) => {
 
 //  Displaynews
 
-const displayNews = datas => {
-    console.log(datas);
+const displayNews = (datas) => {
+    const newsItems = document.getElementById('news-items');
+
+    console.log(datas)
+    newsItems.innerText = `${datas.length} news items found`;
+    console.log(datas.length)
     const newsSection = document.getElementById('news-section');
     newsSection.innerHTML = '';
-    console.log(newsSection);
     datas.forEach(data => {
-        console.log(data);
         const div = document.createElement('div');
         div.innerHTML = `
         <div class="row p-2 border">
@@ -118,9 +120,8 @@ const displayNews = datas => {
 // showing news details
 
 const detailNews = async (newsId) => {
-    console.log(newsId)
     try {
-        const url = `https://openapi.programming-hero.com/api/news/2e78e5e0310c2e9adbb6efb1a263e745`;
+        const url = `https://openapi.programming-hero.com/api/news/${newsId}`;
         const res = await fetch(url)
         const datas = await res.json();
         displayDetails(datas.data)
@@ -130,7 +131,6 @@ const detailNews = async (newsId) => {
 }
 
 const displayDetails = (datas) => {
-    console.log(datas)
     const detailNewsModalLabel = document.getElementById('detailNewsModalLabel');
     detailNewsModalLabel.innerText = `${datas[0].title}`;
 
