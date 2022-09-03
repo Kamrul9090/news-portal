@@ -58,16 +58,19 @@ const loadNews = async (id) => {
 //  Displaynews
 
 const displayNews = (datas) => {
-    console.log(datas);
 
-    const sortData = datas.sort()
-    console.log(sortData);
+    // Using total_view Short the array 
+
+    const sortData = datas.sort((a, b) => {
+        console.log(a, b)
+        return b.total_view - a.total_view;
+    })
 
     const newsItems = document.getElementById('news-items');
     newsItems.innerText = `${datas.length > 0 ? datas.length + ' news items found' : 'No news today'}`;
     const newsSection = document.getElementById('news-section');
     newsSection.innerHTML = '';
-    datas.forEach(data => {
+    sortData.forEach(data => {
         const div = document.createElement('div');
         div.innerHTML = `
         <div class="row p-2 border">
@@ -83,11 +86,11 @@ const displayNews = (datas) => {
                                 <!-- author -->
                                 <div class="d-flex align-items-center">
                                     <div>
-                                        <img class="rounded-circle" style="width:30px" src="${data.author.img}" />
+                                        <img class="rounded-circle" style="width:30px" src="${data.author.img}"/>
                                     </div>
                                     <div class="pl-1 mt-2">
                                         <span class="fw-bold">${data.author.name}</span>
-                                        <p class="text-muted" style="font-size:10px">${data.author.published_date.slice(0, 10)}</p>
+                                        <p class="text-muted" style="font-size:10px">${data.author.published_date}</p>
                                     </div>
                                 </div>
 
@@ -133,6 +136,7 @@ const detailNews = async (newsId) => {
 }
 
 const displayDetails = (datas) => {
+
     const detailNewsModalLabel = document.getElementById('detailNewsModalLabel');
     detailNewsModalLabel.innerText = `${datas[0].title}`;
 
