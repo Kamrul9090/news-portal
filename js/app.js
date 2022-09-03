@@ -10,12 +10,17 @@ const loadCategories = async () => {
 const displayCategories = catagories => {
     const catagorySection = document.getElementById('category-section');
     catagories.forEach(element => {
-        const ul = document.createElement('ul');
-        ul.setAttribute('class', 'style')
-        ul.innerHTML = `
-        <li><a href="#" onclick="loadNews('${element.category_id}')">${element.category_name}</a></li>
+        const list = document.createElement('ul');
+        list.classList.add('nav')
+        list.classList.add('nav-pills')
+        list.classList.add('nav-pill')
+        list.classList.add('list-style')
+        list.innerHTML = `
+        <li class="nav-item" onclick="loadNews('${element.category_id}')">
+            <a class="nav-link" aria-current="page" href="#">${element.category_name}</a>
+        </li>
         `
-        catagorySection.appendChild(ul);
+        catagorySection.appendChild(list);
     })
 }
 
@@ -38,10 +43,22 @@ const loadNews = async (id) => {
 
 const displayNews = datas => {
     console.log(datas);
+    const newsSection = document.getElementById('news-section');
+
     datas.forEach(data => {
         console.log(data);
 
+        const div = document.createElement('div');
+        div.innerHTML = `
+
+
+        `
+        newsSection.appendChild(div);
     })
 }
+
+
+
+
 
 loadCategories()
